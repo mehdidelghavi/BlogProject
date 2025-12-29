@@ -1,56 +1,166 @@
-# 🚀 BlogProject (Laravel API/Blog)
+# 📘 BlogProject (Laravel Blog API)
 
-یک پروژه مدیریت مقالات (Blog) توسعه یافته با **Laravel 11** که شامل سیستم احراز هویت، مدیریت مقالات و جستجوی پیشرفته است.
-
----
-
-## ✨ ویژگی‌های پروژه
-* **Authentication:** سیستم ورود و ثبت‌نام کاربر.
-* **Global Scopes:** محدودسازی خودکار نتایج بر اساس کاربر لاگین شده برای امنیت بیشتر.
-* **Database Seeding:** دارای داده‌های تستی فارسی برای کاربران و مقالات.
-* **Error Handling:** مدیریت اختصاصی خطاهای `404` و `ModelNotFound`.
-* **Clean Code:** رعایت اصول معماری لاراول و کدنویسی تمیز.
+یک پروژه مدیریت وبلاگ (Backend / API) توسعه داده‌شده با **Laravel 11**  
 
 ---
 
-## 🛠 ابزارهای استفاده شده
-* [Laravel 11](https://laravel.com) - PHP Framework
-* [MySQL](https://www.mysql.com/) - Database
-* [Composer](https://getcomposer.org/) - Dependency Manager
+## ✨ ویژگی‌ها
+
+- 🔐 ثبت‌نام و ورود کاربران
+- 🛡️ احراز هویت با JWT
+- 📝 مدیریت مقالات (CRUD)
+- 🔍 جستجوی مقالات
+- 👤 سطح دسترسی (فقط نویسنده می‌تواند پست خود را ویرایش یا حذف کند)
+- 🧪 داده‌های تستی (Seeder)
 
 ---
 
-## 🚀 راهنمای نصب و اجرا
+## 🧰 تکنولوژی‌ها
 
-برای اجرای این پروژه روی سیستم خود، مراحل زیر را دنبال کنید:
+- PHP 8+
+- Laravel 11
+- MySQL
+- Composer
+- JWT Auth
 
-### ۱. کلون کردن پروژه
+---
+
+## 📦 نصب و راه‌اندازی
+
+### 1️⃣ کلون کردن پروژه
 ```bash
-git clone [https://github.com/mehdidelghavi/BlogProject.git](https://github.com/mehdidelghavi/BlogProject.git)
+git clone https://github.com/mehdidelghavi/BlogProject.git
 cd BlogProject
+```
 
-### ۲. نصب وابستگی‌ها
+### 2️⃣ نصب وابستگی‌ها
 ```bash
 composer install
+```
 
-### ۳. تنظیمات محیطی (Environment)
-یک نسخه از فایل .env.example بسازید و نام آن را به .env تغییر دهید، سپس اطلاعات دیتابیس خود را در آن وارد کنید:
-```bash 
+### 3️⃣ تنظیم فایل محیطی
+```bash
 cp .env.example .env
 php artisan key:generate
+```
 
-### ۴. راه‌اندازی دیتابیس و داده‌های تستی
-برای ساخت جداول و وارد کردن داده‌های اولیه (کاربران و مقالات تستی) دستور زیر را بزنید:
+اطلاعات دیتابیس را در فایل `.env` تنظیم کنید.
+
+---
+
+### 4️⃣ اجرای مایگریشن و Seeder
 ```bash
 php artisan migrate --seed
+```
 
-کاربران تستی (Seed Data)
-بعد از اجرای دستور seed، می‌توانید با اطلاعات زیر وارد سیستم شوید:
+---
 
-ایمیل: user$i@example.com
-رمز عبور: password
-
-### ۵. پیکربندی JWT
-برای تولید کلید امنیتی توکن‌ها، دستور زیر الزامی است: 
+### 5️⃣ تنظیم JWT
 ```bash
 php artisan jwt:secret
+```
+
+---
+
+### 6️⃣ اجرای پروژه
+```bash
+php artisan serve
+```
+
+---
+
+## 📡 API Endpoints (نمونه)
+
+### 🔐 ثبت‌نام
+```
+POST /api/register
+[
+    'name' => ['required']
+    'email' => ['required'],
+    'password' => ['password'],
+]
+```
+
+### 🔑 ورود
+```
+POST /api/login
+[
+    'email' => ['required'],
+    'password' => ['password'],
+]
+```
+
+### 🔑 خروج
+```
+POST /api/logout
+Authorization: Bearer YOUR_TOKEN
+```
+
+### 📄 دریافت لیست مقالات
+```
+GET /api/articles
+Authorization: Bearer YOUR_TOKEN
+```
+
+### 📄 دریافت لیست مقالات
+```
+GET /api/articles/show/{article_id}
+Authorization: Bearer YOUR_TOKEN
+```
+
+### ➕ ایجاد مقاله 
+```
+POST /api/articles/store
+Authorization: Bearer YOUR_TOKEN
+[
+    'title' => ['required', 'string'],
+    'content' => ['required'],
+    'image' => ['nullable','mimes:jpg,png,webp']
+]
+```
+
+### ➕ ویرایش مقاله 
+```
+POST /api/articles/update/{article_id}
+Authorization: Bearer YOUR_TOKEN
+[
+    'title' => ['required', 'string'],
+    'content' => ['required'],
+    'image' => ['nullable','mimes:jpg,png,webp']
+]
+```
+
+### ➕ جستجو مقاله 
+```
+GET /api/articles/search/
+Authorization: Bearer YOUR_TOKEN
+[
+    'searchValue' => ['required'],
+]
+```
+
+### ➕ حذف مقاله 
+```
+DELETE /api/articles/delete/{article_id}
+Authorization: Bearer YOUR_TOKEN
+```
+
+---
+
+## 🧪 کاربران تستی
+
+email: user1@example.com  
+password: password
+
+---
+
+## 📄 License
+
+MIT License
+
+---
+
+## 👨‍💻 توسعه‌دهنده
+
+Mehdi Dalghavi  
+https://github.com/mehdidelghavi
