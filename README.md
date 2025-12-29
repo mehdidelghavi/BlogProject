@@ -119,7 +119,7 @@ Authorization: Bearer YOUR_TOKEN
 ]
 ```
 
-### ➕ ویرایش مقاله 
+### ✏️ ویرایش مقاله 
 ```
 POST /api/articles/update/{article_id}
 Authorization: Bearer YOUR_TOKEN
@@ -130,7 +130,7 @@ Authorization: Bearer YOUR_TOKEN
 ]
 ```
 
-### ➕ جستجو مقاله 
+### 🔍 جستجو مقاله 
 ```
 GET /api/articles/search/
 Authorization: Bearer YOUR_TOKEN
@@ -139,7 +139,7 @@ Authorization: Bearer YOUR_TOKEN
 ]
 ```
 
-### ➕ حذف مقاله 
+### 🗑️ حذف مقاله 
 ```
 DELETE /api/articles/delete/{article_id}
 Authorization: Bearer YOUR_TOKEN
