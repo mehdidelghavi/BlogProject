@@ -102,7 +102,7 @@ GET /api/articles
 Authorization: Bearer YOUR_TOKEN
 ```
 
-### 📄 دریافت لیست مقالات
+### 📄 نمایش مقاله
 ```
 GET /api/articles/show/{article_id}
 Authorization: Bearer YOUR_TOKEN
