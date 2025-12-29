@@ -86,7 +86,7 @@ POST /api/register
 POST /api/login
 [
     'email' => ['required'],
-    'password' => ['password'],
+    'password' => ['required'],
 ]
 ```
 
