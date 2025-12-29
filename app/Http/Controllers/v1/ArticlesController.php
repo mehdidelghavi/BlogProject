@@ -43,6 +43,9 @@ class ArticlesController extends Controller
 
     // Search user's article by title
     public function search(Request $request){
+        $request->validate([
+            'searchValue' => ['required', 'string']
+        ]);
         $searchValue = $request->searchValue;
         try {
             $articles = Articles::where('title', 'LIKE', '%' . $searchValue . '%')->orderByDesc('updated_at')->get();
